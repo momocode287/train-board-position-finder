@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乗車位置提案システム</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>乗車位置提案システム</h1>
+
+<h2>条件を入力してください</h2>
+
+<p>駅名</p>
+<select id="station">
+    <option>横浜駅</option>
+    <option>東京駅</option>
+</select>
+
+<p>路線</p>
+<select id="line">
+    <option>JR東海道本線</option>
+    <option>JR山手線</option>
+</select>
+
+<p>方面</p>
+<select id="direction">
+    <option>小田原・熱海方面</option>
+    <option>上野・池袋方面(内回り)</option>
+</select>
+
+<p>優先したい項目</p>
+<label>
+    <input type="radio" name="priority" value="階段">
+    階段に近い
+</label>
+
+<br>
+
+<label>
+    <input type="radio" name="priority" value="エスカレーター">
+    エスカレーターに近い
+</label>
+
+<label>
+    <input type="radio" name="priority" value="エレベーター">
+    エレベーターに近い
+</label>
+
+<br><br>
+
+<button id="searchButton">提案する</button>
+
+<h2>おすすめ結果</h2>
+
+<div id="result">
+    ここに結果が表示されます
+</div>
+
+</body>
+</html>
