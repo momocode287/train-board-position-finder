@@ -39,7 +39,7 @@ document.getElementById("searchButton").addEventListener("click", function(){
     console.log(priority);
 
 
-fetch("train_data.csv")
+fetch("train_data.csv?v=1")
 .then(response => response.text())
 .then(data => {
   
@@ -120,7 +120,7 @@ if (best.length > 0) {
     <h3>乗り換え先</h3>
     <p>${transfer}</p>
 
-    ${note ? ` <h3>注意事項<h/3><p>${note}</p>` : ""}
+    ${note ? ` <h3>注意事項<h3><p>${note}</p>` : ""}
     
     `;
 } else {
