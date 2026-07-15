@@ -6,24 +6,24 @@ document.getElementById("searchButton").addEventListener("click", function(){
 
     if (!station) {
         document.getElementById("result").innerHTML =
-            "<p>駅を選択してください。<p/>";
+            "<p>駅を選択してください。</p>";
         return;    
     }
 
     if (!line) {
         document.getElementById("result").innerHTML =
-            "<p>路線を選択してください。<p/>";
+            "<p>路線を選択してください。</p>";
         return;  
     }
 
     if (!direction) {
         document.getElementById("result").innerHTML =
-            "<p>方面を選択してください。<p/>";
+            "<p>方面を選択してください。</p>";
 
         return;    
     }
 
-    const selectedPriority = document.querySelector('input[name = "priority"):checked');
+    const selectedPriority = document.querySelector('input[name = "priority"]:checked');
 
     if (!selectedPriority) {
        document.getElementById("result").innerHTML =
@@ -39,13 +39,13 @@ document.getElementById("searchButton").addEventListener("click", function(){
     console.log(priority);
 
 
-fetch("train_data.csv?v=1")
+fetch("./train_data.csv")
 .then(response => response.text())
 .then(data => {
   
-    const rows = data.split("¥n");
+    const rows = data.trim().split(/\r?\n/);
 
-    console.log(rows);
+    console.log("rows:", rows.length);
 
     const headers = rows[0].split(",");
 
@@ -61,22 +61,24 @@ const results = rows.filter(row => {
      );
 });
 
-console.log(results);
+console.log("results:", results.length);
 
 const best = results.filter(row => {
     const columns = row.split(",");
 
-    if　(priority === "階段") {
+    if (priority === "階段") {
         return columns[8] === "◎";
     }
 
-    if　(priority === "エスカレーター") {
+    if (priority === "エスカレーター") {
         return columns[9] === "◎";
     }
 
-    if　(priority === "エレベーター") {
+    if (priority === "エレベーター") {
         return columns[10] === "◎";
     }
+
+    return true;
 });
 
 console.log(best);
@@ -120,15 +122,21 @@ if (best.length > 0) {
     <h3>乗り換え先</h3>
     <p>${transfer}</p>
 
-    ${note ? ` <h3>注意事項<h3><p>${note}</p>` : ""}
+    ${note ? ` <h3>注意事項</h3><p>${note}</p>` : ""}
     
     `;
 } else {
 
     document.getElementById("result").innerHTML =
-    "<p>該当するデータが見つかりませんでした。</P>";
-}
+    "<p>該当するデータが見つかりませんでした。</p>";
+ }
 
+
+})
+.catch(error => {
+    console.error(error);
+    document.getElementById("result").innerHTML =
+    "<p>データの読み込みに失敗しました。</p>";
 
 });
 
