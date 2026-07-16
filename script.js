@@ -52,6 +52,7 @@ fetch("./train_data.csv")
 .then(data => {
   
     console.log("CSV読み込み成功!");
+
     console.log(data);
 
 
@@ -60,6 +61,9 @@ fetch("./train_data.csv")
     console.log("rows:", rows.length);
 
     const headers = rows[0].split(",");
+
+    console,log(rows[1]);
+    console.log(rows[1].split(","));
 
     console.log(headers);
 
