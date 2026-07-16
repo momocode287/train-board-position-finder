@@ -138,8 +138,10 @@ if (best.length > 0) {
 })
 .catch(error => {
     console.error(error);
+
     document.getElementById("result").innerHTML =
-    "<p>データの読み込みに失敗しました。</p>";
+    "<p>データの読み込みに失敗しました。</p><p>" + error.message + "</p>";
+    
 
 });
 
