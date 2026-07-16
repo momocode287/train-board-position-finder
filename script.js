@@ -54,6 +54,9 @@ fetch("./train_data.csv")
 const results = rows.filter(row => {
      const columns = row.split(",");
 
+     console.log("CSV:", columns[1], columns[3], colimns[4]);
+     console.log("選択:", station, line, direction);
+
      return (
         columns[1] === station &&
         columns[3] === line &&
